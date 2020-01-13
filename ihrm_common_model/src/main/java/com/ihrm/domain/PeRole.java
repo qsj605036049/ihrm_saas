@@ -3,6 +3,7 @@ package com.ihrm.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,18 +21,14 @@ public class PeRole {
     /**
      * 角色对应的用户列表
      */
-    @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
-    private List<BsUser> users;
+    private List<BsUser> users = new ArrayList<>();
     /**
      * 角色对应的权限列表
      */
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "pe_role_permission",joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
-    ,inverseJoinColumns = {@JoinColumn(name = "permission_id",referencedColumnName = "id")})
-    private List<PePermission> permissions;
+    private List<PePermission> permissions = new ArrayList<>();
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "roles")
     public List<BsUser> getUsers() {
         return users;
     }
@@ -40,6 +37,10 @@ public class PeRole {
         this.users = users;
     }
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "pe_role_permission", joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+            , inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "id")})
     public List<PePermission> getPermissions() {
         return permissions;
     }

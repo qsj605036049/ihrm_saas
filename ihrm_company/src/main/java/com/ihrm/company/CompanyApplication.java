@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  * @author qinshiji
  * @date 2020/1/9 17:49
  */
-@SpringBootApplication(scanBasePackages = "com.ihrm.company")
+@SpringBootApplication(scanBasePackages = "com.ihrm")
 @EntityScan(basePackages = "com.ihrm.domain")
 public class CompanyApplication {
     public static void main(String[] args) {

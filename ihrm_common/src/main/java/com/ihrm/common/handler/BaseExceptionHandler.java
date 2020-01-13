@@ -3,6 +3,7 @@ package com.ihrm.common.handler;
 import com.ihrm.common.entity.Result;
 import com.ihrm.common.entity.ResultCode;
 import com.ihrm.common.exception.CommonException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,17 @@ public class BaseExceptionHandler {
     @ResponseBody
     public Result error(CommonException e){
         return new Result(e.getResultCode());
+    }
+
+    /**
+     * 处理认证异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = AuthenticationException.class)
+    @ResponseBody
+    public Result error(AuthenticationException e){
+        return new Result(ResultCode.LOGIN_ERROR);
     }
 
     /**

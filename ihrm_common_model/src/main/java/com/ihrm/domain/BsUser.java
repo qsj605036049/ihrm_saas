@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,12 +38,12 @@ public class BsUser {
     /**
      * 用户所具有的角色
      */
+    private List<PeRole> roles = new ArrayList<>();
+
     @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "pe_user_role",joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}
-    ,inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
-    private List<PeRole> roles;
-
+    @JoinTable(name = "pe_user_role", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")}
+            , inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     public List<PeRole> getRoles() {
         return roles;
     }

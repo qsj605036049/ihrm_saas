@@ -1,10 +1,7 @@
-package com.ihrm.system.config;
+package com.ihrm.company.config;
 
 import com.ihrm.common.realm.IhrmRealm;
-import com.ihrm.system.config.realm.UserRealm;
-import org.apache.catalina.User;
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -19,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -54,7 +50,7 @@ public class ShiroConfiguration {
      */
     @Bean
     public IhrmRealm ihrmRealm() {
-        return new UserRealm();
+        return new IhrmRealm();
     }
 
     /**
